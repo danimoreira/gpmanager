@@ -1,0 +1,118 @@
+<form class="form-horizontal" autocomplete="off" #createCompanyModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'CreateNewCompany' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'CompanyDetails' | localize" class="pt-3 px-2">
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Name" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="name" id="name" required [(ngModel)]="company.name"
+              #nameModel="ngModel" #nameEl />
+            <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
+          </div>
+        </div>
+
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Email" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="email" id="email" required
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" [(ngModel)]="company.email" #emailModel="ngModel"
+              #emailEl />
+            <abp-validation-summary [control]="emailModel" [controlEl]="emailEl" [customValidationErrors]="emailValidationError"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "PhoneContact" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="phoneContact" id="phoneContact" required maxlength="16"
+              [(ngModel)]="company.phoneContact" #phoneContactModel="ngModel" #phoneContactEl />
+            <abp-validation-summary [control]="phoneContactModel" [controlEl]="phoneContactEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Street" | localize }}
+          </label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" name="addressStreet" id="addressStreet" required
+              [(ngModel)]="company.address['street']" #streetModel="ngModel" #streetEl />
+            <abp-validation-summary [control]="streetModel" [controlEl]="streetEl"></abp-validation-summary>
+          </div>
+          <label class="col-md-2 col-form-label" for="name">
+            {{ "Number" | localize }}
+          </label>
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="addressNumber" id="addressNumber" required maxlength="6"
+              [(ngModel)]="company.address['number']" #numberModel="ngModel" #numberEl />
+            <abp-validation-summary [control]="numberModel" [controlEl]="numberEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Complement" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="addressComplement" id="addressComplement"
+              [(ngModel)]="company.address['complement']" #complementModel="ngModel" #complementEl />
+            <abp-validation-summary [control]="complementModel" [controlEl]="complementEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "District" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="addressDistrict" id="addressDistrict" required
+              [(ngModel)]="company.address['district']" #districtModel="ngModel" #districtEl />
+            <abp-validation-summary [control]="districtModel" [controlEl]="districtEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "City" | localize }}
+          </label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" name="addressCity" id="addressCity" required
+              [(ngModel)]="company.address['city']" #cityModel="ngModel" #cityEl />
+            <abp-validation-summary [control]="cityModel" [controlEl]="cityEl"></abp-validation-summary>
+          </div>
+          <label class="col-md-2 col-form-label" for="name">
+            {{ "State" | localize }}
+          </label>
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="addressState" id="addressState" required maxlength="2"
+              [(ngModel)]="company.address['state']" #stateModel="ngModel" #stateEl />
+            <abp-validation-summary [control]="stateModel" [controlEl]="stateEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "ZipCode" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="addressZipCode" id="addressZipCode" required maxlength="10"
+              [(ngModel)]="company.address['zipCode']" #zipCodeModel="ngModel" #zipCodeEl />
+            <abp-validation-summary [control]="zipCodeModel" [controlEl]="zipCodeEl"></abp-validation-summary>
+          </div>
+        </div>
+
+      </tab>
+    </tabset>
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createCompanyModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

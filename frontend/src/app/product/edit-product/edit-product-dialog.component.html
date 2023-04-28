@@ -1,0 +1,92 @@
+﻿<form class="form-horizontal" autocomplete="off" #editProductModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'EditProduct' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'ProductDetails' | localize" class="pt-3 px-2">
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Description" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="description" id="description" required maxlength="32"
+              [(ngModel)]="product.description" #descriptionModel="ngModel" #descriptionEl />
+            <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "CategoryProduct" | localize }}
+          </label>
+          <div class="col-md-3">
+            <select class="form-control" name="categoryProductId" id="categoryProductId" required
+              [(ngModel)]="product.categoryProductId" #categoryProductIdModel="ngModel" #categoryProductIdEl>
+              <option *ngFor="let category of categoriesProduct" value={{category.id}}>
+                {{category.description}}
+              </option>
+            </select>
+            <abp-validation-summary [control]="categoryProductIdModel"
+              [controlEl]="categoryProductIdEl"></abp-validation-summary>
+          </div>
+
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "MeasureMain" | localize }}
+          </label>
+          <div class="col-md-3">
+            <select class="form-control" name="measureMainId" id="measureMainId" required
+              [(ngModel)]="product.measureMainId" #measureMainIdModel="ngModel" #measureMainIdEl>
+              <option *ngFor="let measure of measures" value={{measure.id}}>
+                {{measure.description}}
+              </option>
+            </select>
+            <abp-validation-summary [control]="measureMainIdModel"
+              [controlEl]="measureMainIdEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "CloseMeasure" | localize }}
+          </label>
+          <div class="col-md-3">
+            <select class="form-control" name="closedMeasureId" id="closedMeasureId" required
+              [(ngModel)]="product.closedMeasureId" #closedMeasureIdModel="ngModel" #closedMeasureIdEl>
+              <option *ngFor="let measure of measures" value={{measure.id}}>
+                {{measure.description}}
+              </option>
+            </select>
+            <abp-validation-summary [control]="closedMeasureIdModel"
+              [controlEl]="closedMeasureIdEl"></abp-validation-summary>
+          </div>
+
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "quantityClosedMeasure" | localize }}
+          </label>
+          <div class="col-md-3">
+            <input type="text" class="form-control" name="quantityClosedMeasure" id="quantityClosedMeasure" required
+              maxlength="32" [(ngModel)]="product.quantityClosedMeasure" #quantityClosedMeasureModel="ngModel"
+              #quantityClosedMeasureEl />
+            <abp-validation-summary [control]="quantityClosedMeasureModel"
+              [controlEl]="quantityClosedMeasureEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row mb-0">
+          <label class="col-md-3 col-form-label">
+            {{ "IsActive" | localize }}
+          </label>
+          <div class="col-md-9">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="isActive" id="isActive"
+                [(ngModel)]="product.isActive" />
+              <label class="custom-control-label mt-2" for="isActive"></label>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editProductModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

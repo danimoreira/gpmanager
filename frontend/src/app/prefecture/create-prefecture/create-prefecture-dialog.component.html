@@ -1,0 +1,114 @@
+<form class="form-horizontal" autocomplete="off" #createPrefectureModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'CreateNewPrefecture' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'PrefectureDetails' | localize" class="pt-3 px-2">
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Name" | localize }}
+          </label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" name="name" id="name" required
+              [(ngModel)]="prefecture.name" #nameModel="ngModel" #nameEl />
+            <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
+          </div>
+
+          <label class="col-md-2 col-form-label" for="name">
+            {{ "IdInternal" | localize }}
+          </label>
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="idInternal" id="idInternal" required maxlength="3"
+              [(ngModel)]="prefecture.idInternal" #idInternalModel="ngModel" #idInternalEl />
+            <abp-validation-summary [control]="idInternalModel" [controlEl]="idInternalEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "CNPJ" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="cnpj" id="cnpj" required maxlength="18"
+              [(ngModel)]="prefecture.cnpj" #cnpjModel="ngModel" #cnpjEl />
+            <abp-validation-summary [control]="cnpjModel" [controlEl]="cnpjEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Street" | localize }}
+          </label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" name="addressStreet" id="addressStreet" required
+              [(ngModel)]="prefecture.address['street']" #streetModel="ngModel" #streetEl />
+            <abp-validation-summary [control]="streetModel" [controlEl]="streetEl"></abp-validation-summary>
+          </div>
+          <label class="col-md-2 col-form-label" for="name">
+            {{ "Number" | localize }}
+          </label>
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="addressNumber" id="addressNumber" required maxlength="6"
+              [(ngModel)]="prefecture.address['number']" #numberModel="ngModel" #numberEl />
+            <abp-validation-summary [control]="numberModel" [controlEl]="numberEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Complement" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="addressComplement" id="addressComplement"
+             [(ngModel)]="prefecture.address['complement']" #complementModel="ngModel" #complementEl />
+            <abp-validation-summary [control]="complementModel" [controlEl]="complementEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "District" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="addressDistrict" id="addressDistrict" required
+              [(ngModel)]="prefecture.address['district']" #districtModel="ngModel" #districtEl />
+            <abp-validation-summary [control]="districtModel" [controlEl]="districtEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "City" | localize }}
+          </label>
+          <div class="col-md-5">
+            <input type="text" class="form-control" name="addressCity" id="addressCity" required
+              [(ngModel)]="prefecture.address['city']" #cityModel="ngModel" #cityEl />
+            <abp-validation-summary [control]="cityModel" [controlEl]="cityEl"></abp-validation-summary>
+          </div>
+          <label class="col-md-2 col-form-label" for="name">
+            {{ "State" | localize }}
+          </label>
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="addressState" id="addressState" required maxlength="2"
+              [(ngModel)]="prefecture.address['state']" #stateModel="ngModel" #stateEl />
+            <abp-validation-summary [control]="stateModel" [controlEl]="stateEl"></abp-validation-summary>
+          </div>
+        </div>
+
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "ZipCode" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="addressZipCode" id="addressZipCode" required maxlength="10"
+              [(ngModel)]="prefecture.address['zipCode']" #zipCodeModel="ngModel" #zipCodeEl />
+            <abp-validation-summary [control]="zipCodeModel" [controlEl]="zipCodeEl"></abp-validation-summary>
+          </div>
+        </div>
+
+      </tab>
+    </tabset>
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createPrefectureModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

@@ -1,0 +1,66 @@
+<form
+  class="form-horizontal"
+  autocomplete="off"
+  #createWorkerModal="ngForm"
+  (ngSubmit)="save()"
+>
+  <abp-modal-header
+    [title]="'CreateNewWorker' | localize"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
+  <div class="modal-body">
+    <tabset>
+      <tab [heading]="'WorkerDetails' | localize" class="pt-3 px-2">
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Name" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="description"
+              id="description"
+              required
+              maxlength="32"
+              [(ngModel)]="Worker.name"
+              #descriptionModel="ngModel"
+              #descriptionEl
+            />
+            <abp-validation-summary
+              [control]="descriptionModel"
+              [controlEl]="descriptionEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "PhoneNumber" | localize }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="phoneNumber"
+              id="phoneNumber"
+              required
+              maxlength="32"
+              [(ngModel)]="Worker.phoneNumber"
+              #dphoneNumberModel="ngModel"
+              #dphoneNumberEl
+            />
+            <abp-validation-summary
+              [control]="dphoneNumberModel"
+              [controlEl]="dphoneNumberEl"
+            ></abp-validation-summary>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  <abp-modal-footer
+    [cancelDisabled]="saving"
+    [saveDisabled]="!createWorkerModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"
+  ></abp-modal-footer>
+</form>
